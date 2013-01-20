@@ -1,0 +1,37 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:keepScreenOn="true"
+    android:orientation="vertical"
+    android:background="@color/background_color"
+    tools:context=".MainActivity" >
+
+	<include 
+	    layout="@layout/common_layout"
+	    />
+
+    <Button
+        android:id="@+id/button_fb_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"        
+		android:background="@drawable/facebook_login_button_selector"
+        />    
+    
+	<fi.metropolia.android.demo.widget.CButton
+		android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+		android:layout_margin="10dp"
+		android:text="@string/hint"
+		/>  
+		
+	
+	<TextView 
+	    android:id="@+id/text_view_auto_update"
+		android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"	
+    	android:textColor="@color/black"
+    	/>	
+		
+</LinearLayout>
