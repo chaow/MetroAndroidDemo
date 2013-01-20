@@ -4,5 +4,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
+    <fragment  
+        android:name="fi.metropolia.android.demo.SessionListFragment"
+        android:id="@+id/session_list_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" 
+        />
 
 </LinearLayout>

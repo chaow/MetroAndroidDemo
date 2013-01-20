@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--  
+more info:
+http://developer.android.com/guide/topics/resources/drawable-resource.html#StateList
+-->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 	<item android:state_pressed="true"
 		android:drawable="@drawable/fb_login_pressed"/>
