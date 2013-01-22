@@ -1,15 +1,14 @@
 package fi.metropolia.android.demo.widget;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class CButton extends Button implements OnClickListener{
+public class CButton extends Button implements OnClickListener, OnLongClickListener{
 
 	public CButton(Context context) {
 		super(context);
@@ -28,22 +27,18 @@ public class CButton extends Button implements OnClickListener{
 	
 	private void init(){
 		setOnClickListener(this);
-	}
-
-	@Override
-	protected void onFocusChanged(boolean focused, int direction,
-			Rect previouslyFocusedRect) {
-		super.onFocusChanged(focused, direction, previouslyFocusedRect);
-		if(focused){
-			setTextColor(Color.BLUE);
-		} else {
-			setTextColor(Color.RED);
-		}
+		setOnLongClickListener(this);
 	}
 
 	@Override
 	public void onClick(View v) {
 		Toast.makeText(getContext(), "Clicked!", Toast.LENGTH_SHORT).show();
+	}
+
+	@Override
+	public boolean onLongClick(View v) {
+		Toast.makeText(getContext(), "Long Clicked!", Toast.LENGTH_SHORT).show();
+		return false;
 	}
 
 }

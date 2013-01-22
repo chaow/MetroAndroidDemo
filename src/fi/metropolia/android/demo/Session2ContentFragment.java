@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -27,7 +29,9 @@ import fi.metropolia.android.demo.model.Person;
 public class Session2ContentFragment extends SherlockListFragment implements OnClickListener{
 
 	private final static String TAG = Session2ContentFragment.class.getSimpleName();
-
+	
+	private LayoutAnimationController mLayoutAnim = null; 
+	
 	private String[] mSampleArray = {
 			"Single Fragment", "Standard tabs", "Tabs with swipe support"		
 	};
@@ -44,6 +48,8 @@ public class Session2ContentFragment extends SherlockListFragment implements OnC
 		}catch(Exception e){
 			Log.e(TAG, "error", e);
 		}
+		
+		mLayoutAnim = AnimationUtils.loadLayoutAnimation(activity.getApplicationContext(), R.anim.list_layout_controller);
 	}
 	
 	@Override
@@ -67,6 +73,13 @@ public class Session2ContentFragment extends SherlockListFragment implements OnC
 		}
 	}
 
+	@Override
+	public void onResume() {
+		super.onResume();
+		getListView().setLayoutAnimation(mLayoutAnim);
+		getListView().startLayoutAnimation();
+	}
+	
 	@Override
 	public void onClick(View v) {
 		final int viewId = v.getId();
@@ -101,7 +114,35 @@ public class Session2ContentFragment extends SherlockListFragment implements OnC
 	
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
-		
+		Bundle b = null;
+		switch(position){
+			case 0:
+				if(mListener != null){
+					mListener.onFragmentChanged(R.layout.single_fragment_layout, null);
+				}
+				break;
+			case 1:
+				b = new Bundle();
+				b.putBoolean("swipe", false);
+				startNewActivity(ActionBarTabActivity.class, b);
+				break;
+			case 2:
+				b = new Bundle();
+				b.putBoolean("swipe", true);
+				startNewActivity(ActionBarTabActivity.class, b);
+				break;
+			default:
+				Toast.makeText(getSherlockActivity().getApplicationContext(), "Nothing here.", Toast.LENGTH_SHORT).show();
+				break;
+		}
+	}
+	
+	private void startNewActivity(Class<?> cls, Bundle b){
+		Intent it = new Intent(getSherlockActivity().getApplicationContext(), cls);
+		if(b != null){
+			it.putExtras(b);
+		}
+		getSherlockActivity().startActivity(it);
 	}
 	
 	public static class SimpleDialog extends SherlockDialogFragment{

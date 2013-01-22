@@ -17,6 +17,8 @@ import com.actionbarsherlock.app.SherlockListFragment;
 public class SessionListFragment extends SherlockListFragment{
 
 	private static final String TAG = SessionListFragment.class.getSimpleName();
+
+	
 	
 	private String[] mSessionArray = {
 			"Session 1", "Session 2"		
@@ -47,6 +49,7 @@ public class SessionListFragment extends SherlockListFragment{
 		setListAdapter(new ArrayAdapter<String>(getSherlockActivity().getApplicationContext(),
                 					android.R.layout.simple_list_item_1, mSessionArray));
 		getView().setBackgroundColor(Color.BLACK);
+
 	}
 
 	@Override
