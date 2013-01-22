@@ -18,8 +18,6 @@ public class SessionListFragment extends SherlockListFragment{
 
 	private static final String TAG = SessionListFragment.class.getSimpleName();
 
-	
-	
 	private String[] mSessionArray = {
 			"Session 1", "Session 2"		
 	};

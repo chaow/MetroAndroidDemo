@@ -97,6 +97,12 @@ public class Session2Activity extends SherlockFragmentActivity implements OnFrag
 			// add animation 
 			transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
 			transaction.commit();
+		} else if(layoutResId == R.layout.view_pager_layout){
+			fragment = ImageViewPagerFragment.newInstance();
+			transaction.replace(R.id.screen_container, fragment, "imageViewPagerFragment");
+			transaction.addToBackStack("imageViewPagerFragment");
+			transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+			transaction.commit();
 		}
 	}
 	
