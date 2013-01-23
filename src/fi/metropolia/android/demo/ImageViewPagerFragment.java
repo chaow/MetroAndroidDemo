@@ -26,6 +26,8 @@ public class ImageViewPagerFragment extends SherlockFragment{
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		// custom the action bar
 		final ActionBar actionBar = getSherlockActivity().getSupportActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setTitle("Session 2");
@@ -40,7 +42,8 @@ public class ImageViewPagerFragment extends SherlockFragment{
 		ImagePagerAdapter adapter = new ImagePagerAdapter(mImageArray);
 		viewPager.setAdapter(adapter);
 		
-		// Set the number of pages that should be retained to either side of the current page in the view hierarchy in an idle state.
+		// Set the number of pages that should be retained to either 
+		// side of the current page in the view hierarchy in an idle state.
 		viewPager.setOffscreenPageLimit(1);
 
 		return view;
@@ -78,6 +81,5 @@ public class ImageViewPagerFragment extends SherlockFragment{
 			((ViewPager) container).removeView((ImageView) object);
 		}
 	}
-	
 	
 }

@@ -145,6 +145,8 @@ public class Session2ContentFragment extends SherlockListFragment implements OnC
 		getSherlockActivity().startActivity(it);
 	}
 	
+	
+	
 	public static class SimpleDialog extends SherlockDialogFragment{
 		
 		private AlertDialogListener mListener = null;

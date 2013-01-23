@@ -231,7 +231,7 @@ public class ActionBarTabActivity extends SherlockFragmentActivity implements co
 			if (TextUtils.isEmpty(tag)) {
 				((TextView) view.findViewById(R.id.text_view_dump_text)).setText("Dump fragment: " + mTag);
 			} else {
-				((TextView) view.findViewById(R.id.text_view_dump_text)).setText("Dump fragment: " + getTag());
+				((TextView) view.findViewById(R.id.text_view_dump_text)).setText("Dump fragment: " + tag);
 			}
 			return view;
 		}

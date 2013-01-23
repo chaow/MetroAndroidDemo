@@ -2,7 +2,6 @@ package fi.metropolia.android.demo;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentManager.OnBackStackChangedListener;
 import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
@@ -40,6 +39,9 @@ public class Session2Activity extends SherlockFragmentActivity implements OnFrag
 		fragment = new Session2ContentFragment();
 		fragment.setArguments(b);
 		transaction.replace(R.id.screen_container, fragment, "session2Content");
+		
+		// add to stack as root, so the stack count is 1
+		transaction.addToBackStack("session2Content");
 		transaction.commit();
 		
 	}
@@ -48,35 +50,22 @@ public class Session2Activity extends SherlockFragmentActivity implements OnFrag
 	public boolean onMenuItemSelected(int featureId, MenuItem item) {
 		final int itemId = item.getItemId();
 		if(itemId == android.R.id.home){
-			
 			// clean up back stack
 			int num = getSupportFragmentManager().getBackStackEntryCount();
 			if(num > 0){
-				for(int i = 0; i < num; i++){
-					getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);		
+				// do not clean up the root fragment
+				for(int i = 0; i < (num - 1); i++){
+					getSupportFragmentManager().popBackStack();		
 				}	
 			}
 
 			// http://developer.android.com/training/implementing-navigation/ancestral.html
 			
+			// kill the activity, and launch a new one
 //          Intent intent = new Intent(getApplicationContext(), Session2Activity.class);
 //          intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 //          startActivity(intent);			
 			
-//	        if (NavUtils.shouldUpRecreateTask(this, upIntent)) {
-//	            // This activity is not part of the application's task, so
-//	            // create a new task
-//	            // with a synthesized back stack.
-//	            TaskStackBuilder
-//	            		.create(getApplicationContext())
-//	                    .addNextIntent(new Intent(this, MainActivity.class))
-//	                    .addNextIntent(upIntent).startActivities();
-//	            finish();
-//	        } else {
-//	            // This activity is part of the application's task, so simply
-//	            // navigate up to the hierarchical parent activity.
-//	            NavUtils.navigateUpTo(this, upIntent);
-//	        }
 			return true;
 		}
 		return super.onMenuItemSelected(featureId, item);
@@ -109,8 +98,10 @@ public class Session2Activity extends SherlockFragmentActivity implements OnFrag
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if(keyCode == KeyEvent.KEYCODE_BACK){
-			if(getSupportFragmentManager().getBackStackEntryCount() == 0){
-				finish();
+			// the root fragment is the first one
+			if(getSupportFragmentManager().getBackStackEntryCount() == 1){
+				getSupportFragmentManager().popBackStack();
+				finish();					
 				return true;
 			}
 		}
@@ -119,7 +110,8 @@ public class Session2Activity extends SherlockFragmentActivity implements OnFrag
 
 	@Override
 	public void onBackStackChanged() {
-		if(getSupportFragmentManager().getBackStackEntryCount() == 0){
+		// the root fragment is the first one
+		if(getSupportFragmentManager().getBackStackEntryCount() == 1){
 			mActionBar.setTitle(R.string.app_name);
 			mActionBar.setSubtitle(R.string.session2);
 			mActionBar.setDisplayHomeAsUpEnabled(false);
