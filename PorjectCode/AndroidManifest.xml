@@ -40,6 +40,11 @@
           <activity
             android:name="fi.metropolia.android.demo.ActionBarTabActivity"
             android:label="@string/app_name" />          
+
+          <activity
+            android:name="fi.metropolia.android.demo.Session4Activity"
+            android:uiOptions="splitActionBarWhenNarrow"
+            android:label="@string/app_name" />
           
     </application>
 

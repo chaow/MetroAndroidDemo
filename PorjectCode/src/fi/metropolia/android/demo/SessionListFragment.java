@@ -19,7 +19,7 @@ public class SessionListFragment extends SherlockListFragment{
 	private static final String TAG = SessionListFragment.class.getSimpleName();
 
 	private String[] mSessionArray = {
-			"Session 1", "Session 2", "Session 3"		
+			"Session 2", "Session 3", "Session 4"		
 	};
 	
 	@Override
@@ -54,12 +54,16 @@ public class SessionListFragment extends SherlockListFragment{
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		switch(position){
 			case 0:
-				// session 1 
+				// session 2
 				startNewActivity(Session1Activity.class);
 				break;
 			case 1:
-				// session 2 
+				// session 3 
 				startNewActivity(Session2Activity.class);
+				break;
+			case 2:
+				// session 4
+				startNewActivity(Session4Activity.class);
 				break;
 			default:
 				Toast.makeText(getSherlockActivity().getApplicationContext(), "Nothing here.", Toast.LENGTH_SHORT).show();

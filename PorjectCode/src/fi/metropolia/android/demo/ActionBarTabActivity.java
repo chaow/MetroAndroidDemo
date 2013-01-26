@@ -50,7 +50,7 @@ public class ActionBarTabActivity extends SherlockFragmentActivity implements co
 		mActionBar = getSupportActionBar();
 
 		
-		mActionBar.setTitle("Session 2");
+		mActionBar.setTitle(R.string.session2);
 		mActionBar.setSubtitle("Tabs");
 		mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		

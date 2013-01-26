@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager.OnBackStackChangedListener;
 import android.support.v4.app.FragmentTransaction;
-import android.view.KeyEvent;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
@@ -71,6 +70,12 @@ public class Session2Activity extends SherlockFragmentActivity implements OnFrag
 		return super.onMenuItemSelected(featureId, item);
 	}
 	
+	@Override
+	public boolean onCreateOptionsMenu(com.actionbarsherlock.view.Menu menu) {
+		com.actionbarsherlock.view.MenuInflater inflater = getSupportMenuInflater();
+		inflater.inflate(R.menu.session_menu, menu);
+		return super.onCreateOptionsMenu(menu);
+	}
 	
 	@Override
 	public void onFragmentChanged(int layoutResId, Bundle bundle) {
@@ -96,25 +101,15 @@ public class Session2Activity extends SherlockFragmentActivity implements OnFrag
 	}
 	
 	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		if(keyCode == KeyEvent.KEYCODE_BACK){
-			// the root fragment is the first one
-			if(getSupportFragmentManager().getBackStackEntryCount() == 1){
-				getSupportFragmentManager().popBackStack();
-				finish();					
-				return true;
-			}
-		}
-		return super.onKeyDown(keyCode, event);
-	}
-
-	@Override
 	public void onBackStackChanged() {
+		final int entryCount = getSupportFragmentManager().getBackStackEntryCount();
 		// the root fragment is the first one
-		if(getSupportFragmentManager().getBackStackEntryCount() == 1){
+		if(entryCount == 1){
 			mActionBar.setTitle(R.string.app_name);
 			mActionBar.setSubtitle(R.string.session2);
 			mActionBar.setDisplayHomeAsUpEnabled(false);
+		}else if(entryCount == 0){
+			finish();
 		}
 	}
 }
