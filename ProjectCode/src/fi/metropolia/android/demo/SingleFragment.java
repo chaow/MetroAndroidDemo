@@ -33,7 +33,7 @@ public class SingleFragment extends SherlockFragment implements OnClickListener{
 		}
 		final ActionBar actionBar = getSherlockActivity().getSupportActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
-		actionBar.setTitle("Session 2");
+		actionBar.setTitle("Session 3");
 		actionBar.setSubtitle("single frament");
 	}
 	

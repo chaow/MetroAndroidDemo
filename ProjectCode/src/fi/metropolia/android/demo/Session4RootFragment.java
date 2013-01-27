@@ -49,9 +49,7 @@ public class Session4RootFragment extends SherlockFragment implements OnClickLis
 	private boolean mShowCheckbox = false;
 	
 	private LinearLayout mContentContainer = null;
-	
 
-	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -93,6 +91,7 @@ public class Session4RootFragment extends SherlockFragment implements OnClickLis
 		((Button)view.findViewById(R.id.button_show_content)).setOnClickListener(this);
 		((Button)view.findViewById(R.id.button_add_view_item)).setOnClickListener(this);
 		((Button)view.findViewById(R.id.button_more_fragment)).setOnClickListener(this);
+		((Button)view.findViewById(R.id.button_nested_fragments)).setOnClickListener(this);
 		((Button)view.findViewById(R.id.button_context_mode)).setOnLongClickListener(this);
 		
 		mContentContainer = (LinearLayout) view.findViewById(R.id.content_container);
@@ -187,7 +186,11 @@ public class Session4RootFragment extends SherlockFragment implements OnClickLis
 			}
 		}else if(viewId == R.id.button_more_fragment){
 			if(mListener != null){
-//				mListener
+				mListener.onFragmentChanged(R.layout.view_pager_layout, null);
+			}
+		}else if(viewId == R.id.button_nested_fragments){
+			if(mListener != null){
+				mListener.onFragmentChanged(R.layout.nested_parent, null);
 			}
 		}else if(viewId == R.id.button_add_view_item){
 			if(mContentContainer != null){
@@ -258,5 +261,26 @@ public class Session4RootFragment extends SherlockFragment implements OnClickLis
 			mActionMode = null;
 		}
 	};
+
+
+
+	@Override
+	public void onPause() {
+		super.onPause();
+		if(mBarCustomView != null){
+			mBarCustomView.setVisibility(View.GONE);
+		}
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		if(mBarCustomView != null){
+			mBarCustomView.setVisibility(View.VISIBLE);			
+		}
+	}
+	
+	
+	
 	
 }

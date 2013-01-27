@@ -30,7 +30,7 @@ public class ImageViewPagerFragment extends SherlockFragment{
 		// custom the action bar
 		final ActionBar actionBar = getSherlockActivity().getSupportActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
-		actionBar.setTitle("Session 2");
+		actionBar.setTitle("Session 3");
 		actionBar.setSubtitle("view pager");
 	}
 

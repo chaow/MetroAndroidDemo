@@ -37,6 +37,18 @@ public class Session4Activity extends SherlockFragmentActivity implements OnFrag
 	public boolean onMenuItemSelected(int featureId, MenuItem item) {
 		final int itemId = item.getItemId();
 		if(itemId == android.R.id.home){
+			// manage child level (nested) fragment
+			Fragment f = getSupportFragmentManager().findFragmentById(R.id.screen_container);
+			if(f != null){
+				final int childNum = f.getChildFragmentManager().getBackStackEntryCount();
+				if(childNum > 0){
+					for(int i = 0; i < childNum; i++){
+						f.getChildFragmentManager().popBackStack();
+					}
+					return true;
+				}
+			}
+			
 			// clean up back stack
 			final int num = getSupportFragmentManager().getBackStackEntryCount();
 			if(num > 0){
@@ -52,7 +64,22 @@ public class Session4Activity extends SherlockFragmentActivity implements OnFrag
 	
 	@Override
 	public void onFragmentChanged(int layoutResId, Bundle bundle) {
-		
+		if(layoutResId <= 0) return;
+		Fragment fragment = null;
+		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+		if(layoutResId == R.layout.view_pager_layout){
+			fragment = new ViewPagerFragment();
+			transaction.replace(R.id.screen_container, fragment, "viewPagerFragment");
+			transaction.addToBackStack("viewPagerFragment");
+			transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+			transaction.commit();
+		}else if(layoutResId == R.layout.nested_parent){
+			fragment = new NestedFragment();
+			transaction.replace(R.id.screen_container, fragment, "parentFragment");
+			transaction.addToBackStack("parentFragment");
+			transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+			transaction.commit();
+		}
 	}	
 	
 	@Override

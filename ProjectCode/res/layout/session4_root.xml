@@ -55,7 +55,16 @@
 	        android:textSize="18sp"    
 			android:text="more fragments"
 	        /> 
-	        
+
+	    <Button
+	        android:id="@+id/button_nested_fragments"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_margin="10dp"    
+	        android:textSize="18sp"    
+			android:text="nested fragments"
+	        /> 	    
+	    	        
 	    <Button
 	        android:id="@+id/button_add_view_item"
 	        android:layout_width="wrap_content"
