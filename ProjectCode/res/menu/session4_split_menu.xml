@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+	<item android:id="@+id/session_split_menu_search" android:title="Search" 
+		android:showAsAction="always"
+		android:actionViewClass="com.actionbarsherlock.widget.SearchView"  />
+    
+    <item
+    	android:id="@+id/session_split_menu_download"
+    	android:title="download"
+ 		android:icon="@android:drawable/stat_sys_download_done"  
+ 		android:showAsAction="always"
+ 		/>
+
+    <item
+        android:id="@+id/session_split_menu_edit"
+    	android:title="edit"
+ 		android:icon="@android:drawable/ic_menu_edit"
+    	android:showAsAction="always"
+    	/>
+    
+    <item
+        android:id="@+id/session_split_menu_lock"
+    	android:title="lock"
+ 		android:icon="@android:drawable/ic_lock_lock"
+    	android:showAsAction="withText|ifRoom" 
+    	/>   
+    	
+    <item
+        android:id="@+id/session_split_menu_alarm"
+    	android:title="alarm"
+ 		android:icon="@android:drawable/ic_lock_idle_alarm"
+ 		android:showAsAction="withText|ifRoom" 
+    	/>    
+    
+     <item
+        android:id="@+id/session_split_menu_speak"
+    	android:title="speak"
+ 		android:icon="@android:drawable/ic_btn_speak_now"
+ 		android:showAsAction="withText|ifRoom" 
+    	/>    
+    
+    
+</menu>

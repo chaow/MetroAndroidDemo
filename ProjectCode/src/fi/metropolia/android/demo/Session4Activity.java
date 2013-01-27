@@ -1,7 +1,9 @@
 package fi.metropolia.android.demo;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager.OnBackStackChangedListener;
+import android.support.v4.app.FragmentTransaction;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
@@ -21,10 +23,13 @@ public class Session4Activity extends SherlockFragmentActivity implements OnFrag
 		// do not call the method getActionBar()
 		mActionBar = getSupportActionBar();
 		mActionBar.setSubtitle(R.string.session4);
+        mActionBar.setHomeButtonEnabled(false);
 
-		
-		
-		
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        Fragment f = new Session4RootFragment();
+		transaction.replace(R.id.screen_container, f, "session4Root");
+		transaction.addToBackStack("session4Root");
+		transaction.commit();
 		getSupportFragmentManager().addOnBackStackChangedListener(this);
 	}
 	
@@ -47,7 +52,7 @@ public class Session4Activity extends SherlockFragmentActivity implements OnFrag
 	
 	@Override
 	public void onFragmentChanged(int layoutResId, Bundle bundle) {
-
+		
 	}	
 	
 	@Override
