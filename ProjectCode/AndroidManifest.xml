@@ -46,6 +46,10 @@
             android:uiOptions="splitActionBarWhenNarrow"
             android:label="@string/app_name" />
           
+          <activity
+            android:name="fi.metropolia.android.demo.Session5Activity"
+            android:label="@string/app_name" />
+          
     </application>
 
 </manifest>

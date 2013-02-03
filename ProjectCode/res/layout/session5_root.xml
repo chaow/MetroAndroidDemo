@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?> 
+
+<!-- xmlns:tools="http://schemas.android.com/tools" -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+	<LinearLayout 
+	    android:layout_height="wrap_content"
+	    android:layout_width="match_parent"
+	    >
+	    <ImageView 
+	    	android:layout_height="wrap_content"
+	    	android:layout_width="wrap_content"        
+	        android:src="@drawable/ic_launcher"
+	        android:paddingRight="10dp"
+	        />
+	    <TextView 
+	    	android:layout_height="wrap_content"
+	    	android:layout_width="wrap_content"        
+	    	android:text="some text"	        
+	        />
+	    
+	</LinearLayout>    
+    
+	<!--  
+    <TextView 
+    	android:layout_height="wrap_content"
+    	android:layout_width="wrap_content"        
+    	android:text="some text"	 
+    	tools:ignore="HardcodedText"               
+        android:drawableLeft="@drawable/ic_launcher"
+        />
+	-->
+	
+    <Button 
+        android:id="@+id/button_basic_gesture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"        
+        android:text="basic touch"
+        />    
+
+	<Button 
+        android:id="@+id/button_show_lrucache_example"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"        
+        android:text="LruCache example"
+        />    
+    
+    
+</LinearLayout>
