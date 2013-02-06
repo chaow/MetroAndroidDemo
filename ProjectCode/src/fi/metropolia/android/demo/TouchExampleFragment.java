@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
+import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
@@ -23,6 +24,8 @@ public class TouchExampleFragment extends SherlockFragment implements View.OnTou
 
     private int _xDelta;
     private int _yDelta;
+    
+    private VelocityTracker mVelocity = null;
     
 	@Override
 	public void onAttach(Activity activity) {
@@ -63,19 +66,28 @@ public class TouchExampleFragment extends SherlockFragment implements View.OnTou
 					= (RelativeLayout.LayoutParams) mImageView.getLayoutParams();
 	            _xDelta = X - lParams.leftMargin;
 	            _yDelta = Y - lParams.topMargin;
-				
+				if(mVelocity == null){
+					mVelocity = VelocityTracker.obtain();
+				}else{
+					mVelocity.clear();
+				}
 				Log.v(TAG, "down " + X + " " + Y);
 				break;
 			case MotionEvent.ACTION_POINTER_DOWN:
 				Log.v(TAG, "pointer down " + X + " " + Y);
 				break;
 			case MotionEvent.ACTION_UP:
+				mVelocity.addMovement(event);
+				mVelocity.computeCurrentVelocity(1000);
+				Log.v(TAG, "Velocity " + mVelocity.getXVelocity() + " " + mVelocity.getYVelocity());
 				Log.v(TAG, "up " + X + " " + Y);
 				break;
 			case MotionEvent.ACTION_POINTER_UP:
 				Log.v(TAG, "pointer up " + X + " " + Y);
 				break;
 			case MotionEvent.ACTION_MOVE:
+				mVelocity.addMovement(event);
+				mVelocity.computeCurrentVelocity(1000);
 				RelativeLayout.LayoutParams layoutParams 
 					= (RelativeLayout.LayoutParams) mImageView.getLayoutParams();
 				layoutParams.leftMargin = X - _xDelta;
@@ -85,6 +97,9 @@ public class TouchExampleFragment extends SherlockFragment implements View.OnTou
 				mImageView.setLayoutParams(layoutParams);
 				Log.v(TAG, "move " + X + " " + Y);
 				break;
+			case MotionEvent.ACTION_CANCEL:
+				mVelocity.recycle();
+				break;				
 		}
 		mDragRoot.invalidate();
 		return true;
