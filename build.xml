@@ -39,6 +39,7 @@
             name="application.version"
             value="${application.name}_${application.code}" />
 
+      
         <echo>
 New application version is ${application.version}
         </echo>
@@ -47,6 +48,6 @@ New application version is ${application.version}
 New application version MANIFEST is ${mymanifest.manifest.android:versionName}
         </echo>
 
-
+  </target>
 
 </project>
